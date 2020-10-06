@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include<conio.h>
+#include<time.h>
+void delay(unsigned int msec)
+{
+	clock_t goal;
+	do{
+		goal = clock() + msec;
+	  }while(goal>clock());
+}
 /* Function for bucket sort */
 void Bucket_Sort(int array[], int n)
 {
@@ -21,7 +29,11 @@ void Bucket_Sort(int array[], int n)
 int main()
 {
     int array[100], i, num;
+    clock_t start,stop;
+    float t;
     clrscr();
+	delay(500);
+    start = clock();
     printf("Enter the size of array : ");
     scanf("%d", &num);
     printf("Enter the %d elements to be sorted:\n",num);
@@ -35,6 +47,9 @@ int main()
     for (i = 0; i < num; i++)
 	printf("%d ", array[i]);
     printf("\n");
+    stop=clock();
+    t=stop-start/CLOCKS_PER_SEC;
+    printf("time tale: %f",t);
 
 getch();
 }
